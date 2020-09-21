@@ -22,7 +22,7 @@ from .decorators import unauthenticated_user, allowed_users, admin_only
 
 #@unauthenticated_user
 def registerPage(request):
-
+    print('chamou register')
     form = CreateUserForm()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
@@ -61,13 +61,6 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
-# exige usuário logado
-@login_required(login_url='login')
-#@admin_only # somente usuários do grupo 'admin' podem acessar a home | posso ampliar para outros grupos ['admin','staff']
-#@allowed_users(allowed_roles=['admin','customer'])
-def home(request):
 
-    #return render(request, 'rg1/dashboard.html', context)
-    return HttpResponse('Home Page')
 
 

@@ -19,10 +19,13 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+from rec.views import home 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('accounts.urls'))
+    path('', home, name='home'),   
+    path('', include('accounts.urls')),
+    path('', include('rec.urls'))
 
 ]
 

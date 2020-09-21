@@ -16,23 +16,23 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      {% if request.user.is_staff %}
+
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'products' %}">Produtos</a>
+        <a class="nav-link" href="">Produtos</a>
       </li>
-      {% else %}
+
        <li class="nav-item">
-        <a class="nav-link" href="{% url 'account' %}">Configurações</a>
+        <a class="nav-link" href="">Configurações</a>
       </li>
-      {% endif %}
+
        <li class="nav-item">
-        <a class="nav-link" href="{% url 'result_assess_html' %}">Assessment</a>
+        <a class="nav-link" href="">Assessment</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="{% url 'painel' %}">Painel</a>
+        <a class="nav-link" href="">Painel</a>
       </li>
     </ul>
   </div>

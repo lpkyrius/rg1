@@ -11,7 +11,7 @@ urlpatterns = [
 	path('login/', views.loginPage, name="login"),
 	path('logout/', views.logoutUser, name="logout"),
 
-    path('', views.home, name="home"),
+    #path('', views.home, name="home"),
 
     path('reset_password/',
         auth_views.PasswordResetView.as_view(template_name="accounts/password_reset.html"),
