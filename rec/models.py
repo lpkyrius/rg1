@@ -6,8 +6,10 @@ class Convenio(models.Model):
     nome = models.CharField(max_length=100, unique=True )
     cnpj = models.CharField(max_length=14, null=True, blank=True)
     telefone = models.CharField(max_length=100, null=True, blank=True)
-    obs = models.CharField(max_length=100, null=True, blank=True)
+    obs = models.CharField(max_length=300, null=True, blank=True)
 
+    def __str__(self):
+        return self.nome
 
 '''
 A cada alteração:

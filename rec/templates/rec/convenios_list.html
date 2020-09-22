@@ -2,8 +2,42 @@
 
 {% block content %}
 
-<p>Convênio 1</p>
-<p>Convênio 2</p>
-<p>Convênio 3</p>
+<table class="table table-borderless">
+    <thead class="border-botton font-weight-bold">
+        <tr>
+            <td>Nome</td>
+            <td>CNPJ</td>
+            <td>Telefone</td>
+            <td>Observações</td>
+            <td>
+                <a href="{% url 'convenios_insert' %}" class="btn btn-outline-success">
+                    <i class="fas fa-plus"></i> Novo
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for convenio in convenios_list %}
+            <tr>
+                <td>{{convenio.nome}}</td>
+                <td>{{convenio.cnpj}}</td>
+                <td>{{convenio.telefone}}</td>
+                <td>{{convenio.obs}}</td>
+                <td>
+                    <a href="{% url 'convenios_update' convenio.id %}" class="btn text-sendary px-0">
+                        <i class="far far-edit fa-edit"></i>
+                    </a>
+                    <form action="{% url 'convenios_delete' convenio.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button class="submit btn">
+                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>    
+</table>
+
 
 {% endblock content %}

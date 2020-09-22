@@ -8,9 +8,10 @@ from . import views
 urlpatterns = [
 
     #path('', views.home, name="home"),
-    path('convenios_form/', views.convenio_form, name="convenios_form"),
-    path('convenios_list/', views.convenio_list, name="convenios_list"),
-
+    path('convenios_form/', views.convenio_form, name="convenios_insert"),          #get and post request for insert operation
+    path('convenios_list/', views.convenio_list, name="convenios_list"),            #get and post request for update operation
+    path('convenios_form/<int:id>/', views.convenio_form, name="convenios_update"),   #get request to retrieve and display all records
+    path('convenios_delete/<int:id>/', views.convenio_delete, name="convenios_delete"),   #get request to retrieve and display all records
 ]
 
 '''
