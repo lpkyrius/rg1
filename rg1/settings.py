@@ -75,14 +75,26 @@ WSGI_APPLICATION = 'rg1.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+'''
+DB_PASSWORD = os.environ.get('PYCRM1_BD_PWD') # senha de app criada para minha conta GMail. Leia mais em https://support.google.com/accounts/answer/185833?hl=en
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'RG1DATA',
+        'USER':'postgres',
+        'PASSWORD':DB_PASSWORD,
+        'HOST':'localhost',
+        'PORT':'5432'
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
