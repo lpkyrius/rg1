@@ -15,11 +15,20 @@ from .models import Convenio
 
 from accounts.decorators import unauthenticated_user, allowed_users, admin_only
 
-from .forms import ConvenioForm
 from .filters import ConveniosFilter
 
 import csv
 import datetime
+
+
+'''
+=========================================================================
+Bloco CRUD - Convenios
+-------------------------------------------------------------------------
+...
+=========================================================================
+'''
+
 
 # exige usuário logado
 @login_required(login_url='login')

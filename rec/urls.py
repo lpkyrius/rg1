@@ -15,7 +15,7 @@ urlpatterns = [
     path('convenios/new/', ConvenioCreateView.as_view(), name="convenios_insert"),        
     path('convenios/<int:pk>/update/', ConvenioUpdateView.as_view(), name="convenios_update"),
     path('convenios/<int:pk>/delete/', ConvenioDeleteView.as_view(), name="convenios_delete"),
-    path('convenios/export_csv/', views.export_csv, name="export_csv"),
+    path('convenios/export_csv/', views.export_csv, name="export_csv"), 
 
 ]
 
