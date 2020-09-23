@@ -1,0 +1,31 @@
+{% extends "rec/base.html" %}
+
+
+{% block content %}
+<form action="" method="POST" autocomplete="off">
+    {%csrf_token%}
+    Nome: {{object.nome}}
+    <div class="row">
+        <div class="col-md-4">
+            CNPJ: {{object.cnpj}}  
+        </div>
+        <div class="col-md-8">
+            Telefone: {{object.telefone}}
+        </div>
+    </div>        
+    Observações: {{object.obs}}
+    <div class="row">
+        <div class="col-md-8">
+          <!-- <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i> Salvar</button>   -->
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'convenios_list' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fas fa-stream"></i> Voltar à lista
+            </a>
+        </div>
+    </div>
+    
+</form>
+
+
+{% endblock content %}

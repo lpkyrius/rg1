@@ -1,8 +1,56 @@
 {% extends "rec/base.html" %}
 
+{% load bootstrap %}
+
 {% block content %}
 
-<table class="table table-borderless">
+{% block scripts %}
+
+<script>
+
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+
+</script>
+
+{% endblock scripts %}
+
+<div class="container">
+  <form method="GET">
+    <h4>Filtros</h4>
+    {{ filter.form|bootstrap }}    
+    <button type="submit" class="btn btn-sm btn-success">Localizar</button>
+  </form>
+</div>
+
+<div class="card text-center text-black bg-white mb-3">
+  <div class="card-header">
+       
+    <a href="" class="btn text-sendary px-0" onclick="printDiv('areaimpressao')" value="Imprimir" >
+      <i class="fas fa-print"></i>
+    </a>
+
+    <a href="{% url 'export_csv' %}" class="btn text-sendary px-0">
+      <i class="fas fa-download"></i>
+    </a>
+
+  </div>
+</div>
+
+
+<br>
+
+<div class="area-impressao-clss" id="areaimpressao">
+  
+  <table class="table table-borderless">
     <thead class="border-botton font-weight-bold">
         <tr>
             <td>Nome</td>
@@ -17,9 +65,9 @@
         </tr>
     </thead>
     <tbody>
-        {% for convenio in convenios_list %}
+        {% for convenio in filter.qs %}
             <tr>
-                <td>{{convenio.nome}}</td>
+                <td><a class="mr-2" href="{% url 'convenios_detail' convenio.id %}">{{convenio.nome}}</a></td>
                 <td>{{convenio.cnpj}}</td>
                 <td>{{convenio.telefone}}</td>
                 <td>{{convenio.obs}}</td>
@@ -27,17 +75,44 @@
                     <a href="{% url 'convenios_update' convenio.id %}" class="btn text-sendary px-0">
                         <i class="far far-edit fa-edit"></i>
                     </a>
-                    <form action="{% url 'convenios_delete' convenio.id %}" method="post" class="d-inline">
-                        {% csrf_token %}
-                        <button class="submit btn">
-                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
-                        </button>
-                    </form>
+
+                    <a href="{% url 'convenios_delete' convenio.id %}" class="btn text-sendary px-0">
+                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                    </a>
+
+
+
                 </td>
             </tr>
         {% endfor %}
-    </tbody>    
-</table>
+        
 
+
+    </tbody>    
+  </table>
+
+</div>
+
+{% if is_paginated %}
+
+{% if page_obj.has_previous %}
+  <a class="btn btn-sm btn-outline-secondary mb-4" href="?page=1">Primeira</a> 
+  <a class="btn btn-sm btn-outline-secondary mb-4" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+{% endif %}
+
+{% for num in page_obj.paginator.page_range %}
+  {% if page_obj.number == num %}
+    <a class="btn btn-sm btn-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
+  {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+    <a class="btn btn-sm btn-outline-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
+  {% endif %}
+{% endfor %}
+
+{% if page_obj.has_next %}
+  <a class="btn btn-sm btn-outline-secondary mb-4" href="?page={{ page_obj.next_page_number }}">Próxima</a>
+  <a class="btn btn-sm btn-outline-secondary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Última</a>
+{% endif %}
+
+{% endif %}
 
 {% endblock content %}

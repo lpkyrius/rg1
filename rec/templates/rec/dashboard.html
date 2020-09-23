@@ -16,15 +16,15 @@
 			<table class="table table-sm">
 				<tr>
 					<th></th>
-					<th>Cliente</th>
+					<th>Convênio</th>
 					<th>Telefone</th>
 				</tr>
 
 				{% for customer in customers %}
 					<tr>
 						<td><a class="btn btn-sm btn-info" href="{% url 'customer' customer.id %}">Visualizar</a></td>
-						<td>Nome do cliente</td>
-						<td>Telefone do Cliente</td>
+						<td>Nome do Convênio</td>
+						<td>Telefone do Convênio</td>
 					</tr>
 				{% endfor %}
 
@@ -39,11 +39,11 @@
 
 			<table class="table table-sm">
 				<tr>
-					<th>Produto</th>
-					<th>Data do Pedido</th>
+					<th>Tipo</th>
+					<th>Data do Movimento</th>
 					<th>Status</th>
-					<th>Editar</th>
-					<th>Deletar</th>
+					<th>Crédito</th>
+					<th>Débito</th>
 				</tr>
 
 				{% for order in orders %}
