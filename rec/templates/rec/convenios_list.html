@@ -68,9 +68,9 @@
         {% for convenio in filter.qs %}
             <tr>
                 <td><a class="mr-2" href="{% url 'convenios_detail' convenio.id %}">{{convenio.nome}}</a></td>
-                <td>{{convenio.cnpj}}</td>
-                <td>{{convenio.telefone}}</td>
-                <td>{{convenio.obs}}</td>
+                <td>{{convenio.cnpj|default_if_none:"-"}}</td>
+                <td>{{convenio.telefone|default_if_none:"-"}}</td>
+                <td>{{convenio.obs|default_if_none:"-"}}</td>
                 <td>
                     <a href="{% url 'convenios_update' convenio.id %}" class="btn text-sendary px-0">
                         <i class="far far-edit fa-edit"></i>

@@ -7,18 +7,20 @@
     Nome: {{object.nome}}
     <div class="row">
         <div class="col-md-4">
-            CNPJ: {{object.cnpj}}  
+            CNPJ: {{object.cnpj|default_if_none:"&nbsp;"}}  
         </div>
         <div class="col-md-8">
-            Telefone: {{object.telefone}}
+            Telefone: {{object.telefone|default_if_none:"&nbsp;"}}
         </div>
     </div>        
-    Observações: {{object.obs}}
+    Observações: {{object.obs|default_if_none:"&nbsp;"}}
+    <br>
     <div class="row">
         <div class="col-md-8">
           <!-- <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i> Salvar</button>   -->
         </div>
         <div class="col-md-4">
+            <br>
             <a href="{% url 'convenios_list' %}" class="btn btn-secondary btn-block btn-lg">
                 <i class="fas fa-stream"></i> Voltar à lista
             </a>

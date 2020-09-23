@@ -31,7 +31,7 @@ Bloco CRUD - Convenios
 
 
 # exige usuário logado
-@login_required(login_url='login')
+@login_required(login_url='/login/')
 #@admin_only # somente usuários do grupo 'admin' podem acessar a home | posso ampliar para outros grupos ['admin','staff']
 #@allowed_users(allowed_roles=['admin','customer'])
 def home(request):
@@ -124,7 +124,7 @@ class ConvenioDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return True # libera se for do mesmo autor
         #return False  
 
-
+@login_required(login_url='/login/')
 def export_csv(request):
 
     response = HttpResponse(content_type='text/csv')
